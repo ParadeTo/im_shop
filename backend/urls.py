@@ -19,7 +19,7 @@ from rest_framework.documentation import include_docs_urls
 
 import xadmin
 from settings import MEDIA_ROOT
-from goods.views_test import GoodsListView
+from goods.views import GoodsListView
 
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),

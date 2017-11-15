@@ -5,11 +5,11 @@ from .serializers import GoodsSerializer
 from .models import Goods
 
 
-class SnippetList(APIView):
+class GoodsListView(APIView):
     """
-    List all snippets, or create a new snippet.
+    返回列表
     """
     def get(self, request, format=None):
-        snippets = Goods.objects.all()[:10]
-        serializer = GoodsSerializer(snippets, many=True)
-        return Response(serializer.data)
+        goods = Goods.objects.all()[:10]
+        goods_serializer = GoodsSerializer(goods, many=True)
+        return Response(goods_serializer.data)
