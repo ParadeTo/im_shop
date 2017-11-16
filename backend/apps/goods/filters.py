@@ -10,7 +10,8 @@ class GoodsFilter(filters.FilterSet):
     """
     price_min = filters.NumberFilter(name="shop_price", lookup_expr="gte")
     price_max = filters.NumberFilter(name="shop_price", lookup_expr="lte")
+    name = filters.CharFilter(name="name", lookup_expr="contains")
 
     class Meta:
         model = Goods
-        fields = ['price_min', 'price_max']
+        fields = ['price_min', 'price_max', 'name']

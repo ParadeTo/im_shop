@@ -1,4 +1,4 @@
-from rest_framework import status, mixins, generics, viewsets
+from rest_framework import status, mixins, generics, viewsets, filters
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
@@ -54,9 +54,16 @@ class GoodsListViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     queryset = Goods.objects.all()
     serializer_class = GoodsSerializer
     pagination_class = CustomPagination
-    filter_backends = (DjangoFilterBackend, )
+
+    # django-filter +  restframework.filters
+    """
+    SearchFilter->filter_queryset->orm_lookups:
+    ['name__icontains', 'goods_brief__icontains', 'goods_desc__icontains']
+    """
+    filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
     filter_class = GoodsFilter
-    # filter_fields = ('name', 'shop_price')
+    search_fields = ('name', 'goods_brief', 'goods_desc')
+    ordering_fields = ('add_time', 'sold_num')
 
     # def get_queryset(self):
     #     queryset = Goods.objects.all() # 并没有执行
