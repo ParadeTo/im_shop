@@ -19,17 +19,22 @@ from rest_framework.documentation import include_docs_urls
 
 import xadmin
 from settings import MEDIA_ROOT
-from goods.views import GoodsListView
+from goods.views import GoodsListViewSet
+
+goods_list = GoodsListViewSet.as_view({
+    'get': 'list'
+})
 
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),
 
-    # 商品列表页
-    url(r'goods/$', GoodsListView.as_view(), name="goods_list"),
+    # 商品列表页 method 1
+    # url(r'goods/$', GoodsListView.as_view(), name="goods_list"),
+
+    # 商品列表页 method 2
+    url(r'goods/$', goods_list, name="goods_list"),
 
     url(r'docs/', include_docs_urls(title="游先生的生鲜")),
-
-
 ]

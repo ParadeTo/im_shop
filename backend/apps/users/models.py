@@ -21,7 +21,7 @@ class UserProfile(AbstractUser):
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return self.username
+        return self.username # name 有可能为null
 
 # todo: redis
 class VerifyCode(models.Model):
