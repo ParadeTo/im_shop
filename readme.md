@@ -1,7 +1,45 @@
+# drf 的 request 和 response
+
+# Apiview, GenericView, Viewset 和 router 的原理分析
+```javascript
+View (django)
+^
+|
+APIView (drf)
+^
+|
+GenericAPIView (drf)
+^
+|
+GenericViewSet(ViewSetMixin, generics.GenericAPIView) (drf)
+
+    ReadOnlyModelViewSet(mixins.RetrieveModelMixin, mixins.ListModelMixin, GenericViewSet)
+    ...
+    
+    
+
+mixin
+    CreateModelMixin + GenericAPIView => CreateAPIView
+    ListModelMixin                    => ListAPIView
+        f: get => list
+    RetrieveModelMixin                => RetrieveAPIView
+        f: get => retrieve
+    UpdateModelMixin
+    DestroyModelMixin
+
+ViewSetMixin
+    f: initialize_request
+    f: as_view 通过该方法实现路由到方法的绑定
+    goods_list = GoodsListViewSet.as_view({'get': 'list'})
+    或者通过router来默认绑定
+    router.register(r'goods', GoodsListViewSet)
+
+```
+
+
 # restful 优点
 * 轻量，不需要额外的协议，http method 本身有语义
 * 面向资源，自解释性
-
 
 # 为什么前后端分离
 * pc，app，pad 多端适应

@@ -23,3 +23,11 @@ class Bar(object):
 
 
 Bar.bar('a', 'a')
+
+def f (a, b, c='c'):
+    print(a, b, c)
+
+f(1,2,3)
+
+if 0:
+    print(1)
