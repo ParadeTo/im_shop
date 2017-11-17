@@ -5,8 +5,9 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 from .filters import GoodsFilter
 from .pagination import CustomPagination
-from .serializers import GoodsSerializer
-from .models import Goods
+from .serializers import GoodsSerializer, CategorySerializer
+from .models import Goods, GoodsCategory
+
 
 # method 1
 # class GoodsListView(APIView):
@@ -71,3 +72,11 @@ class GoodsListViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     #     if price_min:
     #         queryset = Goods.objects.filter(shop_price__gt=int(price_min))
     #     return queryset
+
+class CategoryViewset(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
+    """
+    List:
+        商品分类列表数据
+    """
+    queryset = GoodsCategory.objects.all()
+    serializer_class = CategorySerializer

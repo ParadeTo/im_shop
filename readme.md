@@ -1,3 +1,10 @@
+# django shell
+```
+python manage.py shell
+import django
+django.setup()
+```
+
 # drf 的 request 和 response
 
 # Apiview, GenericView, Viewset 和 router 的原理分析

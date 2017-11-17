@@ -20,12 +20,15 @@ from rest_framework.documentation import include_docs_urls
 
 import xadmin
 from settings import MEDIA_ROOT
-from goods.views import GoodsListViewSet
+from goods.views import GoodsListViewSet, CategoryViewset
 
 router = DefaultRouter()
 
 # 配置goods的url
 router.register(r'goods', GoodsListViewSet, base_name='goods')
+
+# 配置category的url
+router.register(r'categories', CategoryViewset, base_name='categories')
 
 
 urlpatterns = [

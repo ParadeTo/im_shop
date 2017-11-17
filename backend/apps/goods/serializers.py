@@ -4,7 +4,7 @@ from rest_framework import serializers
 from .models import Goods
 from .models import GoodsCategory
 
-# method 1
+# method 1 自己一个个写字段
 # class GoodsSerializer(serializers.Serializer):
 #     name = serializers.CharField(required=True, max_length=100)
 #     click_num = serializers.IntegerField(default=0)
@@ -17,7 +17,24 @@ from .models import GoodsCategory
 #         """
 #         return Goods.objects.create(**validated_data)
 
+class CategorySerializer3(serializers.ModelSerializer):
+    class Meta:
+        model = GoodsCategory
+        fields = "__all__"
+
+
+class CategorySerializer2(serializers.ModelSerializer):
+    sub_cat = CategorySerializer3(many=True)
+
+    class Meta:
+        model = GoodsCategory
+        fields = "__all__"
+
+
+# method 2 直接用Model中的字段
 class CategorySerializer(serializers.ModelSerializer):
+    sub_cat = CategorySerializer2(many=True)
+
     class Meta:
         model = GoodsCategory
         fields = "__all__"
@@ -29,4 +46,4 @@ class GoodsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Goods
         fields = "__all__"
-        # fields = ('name', 'click_num', 'market_price', 'add_time')
+        # fields = ('name', 'click_num', 'market_price', 'add_time') # 需要的字段
