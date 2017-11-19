@@ -24,6 +24,7 @@ class CategorySerializer3(serializers.ModelSerializer):
 
 
 class CategorySerializer2(serializers.ModelSerializer):
+    # 子类别即三级类别
     sub_cat = CategorySerializer3(many=True)
 
     class Meta:
@@ -33,6 +34,7 @@ class CategorySerializer2(serializers.ModelSerializer):
 
 # method 2 直接用Model中的字段
 class CategorySerializer(serializers.ModelSerializer):
+    # 子类别即二级类别
     sub_cat = CategorySerializer2(many=True)
 
     class Meta:

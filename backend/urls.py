@@ -28,7 +28,7 @@ router = DefaultRouter()
 router.register(r'goods', GoodsListViewSet, base_name='goods')
 
 # 配置category的url
-router.register(r'categories', CategoryViewset, base_name='categories')
+router.register(r'categorys', CategoryViewset, base_name='categorys')
 
 
 urlpatterns = [

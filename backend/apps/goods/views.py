@@ -64,7 +64,7 @@ class GoodsListViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
     filter_class = GoodsFilter
     search_fields = ('name', 'goods_brief', 'goods_desc')
-    ordering_fields = ('add_time', 'sold_num')
+    ordering_fields = ('shop_price', 'sold_num')
 
     # def get_queryset(self):
     #     queryset = Goods.objects.all() # 并没有执行

@@ -33,6 +33,7 @@
     export default {
         data () {
             return {
+                perPage: 2,
                 curPage: 1, // 页码
                 top_category: '', // 商品种类
                 listData: [],
@@ -69,7 +70,7 @@
         },
         computed: {
             totalPage(){
-                return  Math.ceil(this.proNum/12)
+                return  Math.ceil(this.proNum/this.perPage)
             }
         },
         methods: {
@@ -100,11 +101,12 @@
                   });
                 }else {
                   getGoods({
+                    page_size: this.perPage,
                     page: this.curPage, //当前页码
                     top_category: this.top_category, //商品类型
                     ordering: this.ordering, //排序类型
-                    pricemin: this.pricemin, //价格最低 默认为‘’ 即为不选价格区间
-                    pricemax: this.pricemax // 价格最高 默认为‘’
+                    price_min: this.pricemin, //价格最低 默认为‘’ 即为不选价格区间
+                    price_max: this.pricemax // 价格最高 默认为‘’
                   }).then((response)=> {
 
                     this.listData = response.data.results;
@@ -154,11 +156,21 @@
                         proType: this.type, //商品类型
                     }
                 }).then((response)=> {
-
+                    console.log(response)
                     this.priceRange = response.data;
                 }).catch(function (error) {
                     console.log(error);
                 });
+                var xhr = new window.XMLHttpRequest()
+                xhr.open('get','/priceRange')
+                xhr.onreadystatechange = function () {
+                  if (this.readyState == 4 && this.status == 200) {
+                    //通过 responseText 来获取图片文件对应的二进制字符串
+                    console.log('xrh')
+                    console.log(this.responseText)
+                  }
+                }
+                xhr.send()
             },
             changeSort (type) {
 
