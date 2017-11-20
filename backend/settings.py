@@ -52,10 +52,13 @@ INSTALLED_APPS = [
     'crispy_forms',
     'xadmin',
     'rest_framework',
-    'corsheaders'
+    'corsheaders',
+    'rest_framework.authtoken'
 ]
 
 MIDDLEWARE = [
+    # 不会进入下面的中间件
+    # 'middlewares.request_middleware.RequestMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -64,6 +67,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'middlewares.response_middleware.ResponseMiddleware',
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -148,5 +152,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # django rest framework
 REST_FRAMEWORK = {
-    'PAGE_SIZE': 10
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    )
 }

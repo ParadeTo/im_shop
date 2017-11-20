@@ -78,3 +78,13 @@ www.lfd.uci.edu/~gohlke/pythonlibs/
 settings.py
 
 'OPTIONS': { 'init_command': 'SET default_storage_engine=INNODB' },
+
+* 用户
+
+```angular2html
+{"username":"admin", "password":"admin123"}
+```
+
+* 博客地址
+
+`http://projectsedu.com`
