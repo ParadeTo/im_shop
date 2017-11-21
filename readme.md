@@ -1,3 +1,9 @@
+# json web token
+简书->日记本
+
+将jwt的cookie设置到顶级域名之下！
+
+
 # django shell
 ```
 python manage.py shell

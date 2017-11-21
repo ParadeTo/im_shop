@@ -2,6 +2,7 @@ from rest_framework import status, mixins, generics, viewsets, filters
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.authentication import TokenAuthentication
 
 from .filters import GoodsFilter
 from .pagination import CustomPagination
@@ -63,6 +64,7 @@ class GoodsListViewSet(mixins.ListModelMixin, viewsets.GenericViewSet):
     """
     filter_backends = (DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter)
     filter_class = GoodsFilter
+    # authentication_classes = (TokenAuthentication, )
     search_fields = ('name', 'goods_brief', 'goods_desc')
     ordering_fields = ('shop_price', 'sold_num')
 
