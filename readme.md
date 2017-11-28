@@ -3,6 +3,69 @@
 
 将jwt的cookie设置到顶级域名之下！
 
+## 认证接口的流程
+
+```
+# jwt 的认证接口
+url(r'^login/', rest_framework_jwt.views.obtain_jwt_token)
+
+
+class ObtainJSONWebToken(JSONWebTokenAPIView):
+    """
+    API View that receives a POST with a user's username and password.
+
+    Returns a JSON Web Token that can be used for authenticated requests.
+    """
+    serializer_class = JSONWebTokenSerializer
+    
+from django.contrib.auth import authenticate
+class JSONWebTokenSerializer(Serializer):
+    ...
+    user = authenticate(**credentials)
+    
+def authenticate(request=None, **credentials):
+    """
+    If the given credentials are valid, return a User object.
+    """
+    # backend_path = 'django.contrib.auth.backends.ModelBackend'
+    for backend, backend_path in _get_backends(return_tuples=True):
+        try:
+            user = _authenticate_with_backend(backend, backend_path, request, credentials)
+        except PermissionDenied:
+        
+class ModelBackend(object):
+    """
+    Authenticates against settings.AUTH_USER_MODEL.
+    """
+
+    def authenticate(self, request, username=None, password=None, **kwargs):
+        if username is None:
+            username = kwargs.get(UserModel.USERNAME_FIELD)
+        try:
+            user = UserModel._default_manager.get_by_natural_key(username)
+```
+
+## 自己实现这个backend
+setting.py
+
+```
+AUTHENTICATION_BACKENDS = (
+    'users.views.CustomBackend',
+)
+
+class CustomBackend(ModelBackend):
+    """
+    自定义用户验证
+    """
+    def authenticate(self, request, username=None, password=None, **kwargs):
+        try:
+            user = User.objects.get(Q(username=username)|Q(mobile=username))
+            if user.check_password(password):
+                return user
+        except Exception as e:
+            return None
+```
+
 
 # django shell
 ```
