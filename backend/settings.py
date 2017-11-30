@@ -54,7 +54,8 @@ INSTALLED_APPS = [
     'xadmin',
     'rest_framework',
     'corsheaders',
-    'rest_framework.authtoken'
+    'rest_framework.authtoken',
+    'snippets'
 ]
 
 MIDDLEWARE = [

@@ -1,3 +1,30 @@
+# 一个疑问
+```
+class UserDetail(generics.RetrieveAPIView):
+    # 查询一个为什么要all()
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    
+class GenericAPIView(views.APIView):
+    ...
+    def get_object(self):
+        """
+        Returns the object the view is displaying.
+
+        You may want to override this if you need to provide non-standard
+        queryset lookups.  Eg if objects are referenced using multiple
+        keyword arguments in the url conf.
+        """
+        # 其实是在 queryset 上进行了过滤
+        queryset = self.filter_queryset(self.get_queryset())
+         
+最后在这里，因为User.objects.all()是懒执行的
+def get_object_or_404(klass, *args, **kwargs):
+    queryset = _get_queryset(klass)
+    try:
+        return queryset.get(*args, **kwargs)
+```
+
 # json web token
 简书->日记本
 

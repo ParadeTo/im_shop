@@ -23,6 +23,7 @@ from rest_framework_jwt.views import obtain_jwt_token
 import xadmin
 from settings import MEDIA_ROOT
 from goods.views import GoodsListViewSet, CategoryViewset
+from snippets.urls import urlpatterns as snippetsUrl
 
 router = DefaultRouter()
 
@@ -52,3 +53,5 @@ urlpatterns = [
     # jwt 的认证接口
     url(r'^login/', obtain_jwt_token)
 ]
+
+urlpatterns += snippetsUrl
