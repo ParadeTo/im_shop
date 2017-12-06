@@ -23,6 +23,7 @@ from rest_framework_jwt.views import obtain_jwt_token
 import xadmin
 from settings import MEDIA_ROOT
 from goods.views import GoodsListViewSet, CategoryViewset
+from users.views import SmsCodeViewset
 
 router = DefaultRouter()
 
@@ -32,6 +33,7 @@ router.register(r'goods', GoodsListViewSet, base_name='goods')
 # 配置category的url
 router.register(r'categorys', CategoryViewset, base_name='categorys')
 
+router.register(r'code', SmsCodeViewset, base_name='categorys')
 
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
