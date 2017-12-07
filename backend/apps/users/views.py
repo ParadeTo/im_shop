@@ -9,7 +9,7 @@ from rest_framework.response import Response
 
 from users.models import VerifyCode
 from utils.yunpian import YunPian
-from .serializers import SmsSerializer
+from .serializers import SmsSerializer, UserRegSerializer
 
 
 User = get_user_model()
@@ -69,3 +69,8 @@ class SmsCodeViewset(CreateModelMixin, viewsets.GenericViewSet):
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+
+class UserRegViewset(CreateModelMixin, viewsets.GenericViewSet):
+    serializer_class = UserRegSerializer
+    queryset = User.objects.all()

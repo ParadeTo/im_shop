@@ -23,8 +23,8 @@ from rest_framework_jwt.views import obtain_jwt_token
 import xadmin
 from settings import MEDIA_ROOT
 from goods.views import GoodsListViewSet, CategoryViewset
-from snippets.urls import urlpatterns as snippetsUrl
-from users.views import SmsCodeViewset
+# from snippets.urls import urlpatterns as snippetsUrl
+from users.views import SmsCodeViewset, UserRegViewset
 
 router = DefaultRouter()
 
@@ -35,6 +35,8 @@ router.register(r'goods', GoodsListViewSet, base_name='goods')
 router.register(r'categorys', CategoryViewset, base_name='categorys')
 
 router.register(r'code', SmsCodeViewset, base_name='categorys')
+
+router.register(r'users', UserRegViewset, base_name='users')
 
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
@@ -56,4 +58,4 @@ urlpatterns = [
     url(r'^login/', obtain_jwt_token)
 ]
 
-urlpatterns += snippetsUrl
+# urlpatterns += snippetsUrl

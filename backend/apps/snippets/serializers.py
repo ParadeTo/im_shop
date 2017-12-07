@@ -1,7 +1,7 @@
-from rest_framework import serializers
-
-from snippets.models import Snippet, LANGUAGE_CHOICES, STYLE_CHOICES
-from snippets.utils import User
+# from rest_framework import serializers
+#
+# from snippets.models import Snippet, LANGUAGE_CHOICES, STYLE_CHOICES
+# from snippets.utils import User
 
 # method1
 # class SnippetSerializer(serializers.Serializer):
@@ -32,18 +32,18 @@ from snippets.utils import User
 
 
 # method2
-class SnippetSerializer(serializers.ModelSerializer):
-    # The untyped ReadOnlyField is always read-only, and will be used for serialized representations, but will not be used for updating model instances when they are deserialized
-    owner = serializers.ReadOnlyField(source='owner.username')
+# class SnippetSerializer(serializers.ModelSerializer):
+#     # The untyped ReadOnlyField is always read-only, and will be used for serialized representations, but will not be used for updating model instances when they are deserialized
+#     owner = serializers.ReadOnlyField(source='owner.username')
+#
+#     class Meta:
+#         model = Snippet
+#         fields = ('id', 'title', 'code', 'linenos', 'language', 'style', 'owner')
 
-    class Meta:
-        model = Snippet
-        fields = ('id', 'title', 'code', 'linenos', 'language', 'style', 'owner')
 
-
-class UserSerializer(serializers.ModelSerializer):
-    snippets = serializers.PrimaryKeyRelatedField(many=True, queryset=Snippet.objects.all())
-
-    class Meta:
-        model = User
-        fields = ('id', 'username', 'snippets')
+# class UserSerializer(serializers.ModelSerializer):
+#     snippets = serializers.PrimaryKeyRelatedField(many=True, queryset=Snippet.objects.all())
+#
+#     class Meta:
+#         model = User
+#         fields = ('id', 'username', 'snippets')
