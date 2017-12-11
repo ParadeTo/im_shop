@@ -1,3 +1,5 @@
+# django 信号量
+
 # 一个疑问
 ```
 class UserDetail(generics.RetrieveAPIView):
@@ -31,6 +33,7 @@ def get_object_or_404(klass, *args, **kwargs):
 
 # json web token
 简书->日记本
+
 
 将jwt的cookie设置到顶级域名之下！
 

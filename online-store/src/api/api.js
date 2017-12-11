@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 let host = 'http://shop.projectsedu.com'
-let local_host = 'http://localhost:9000'
+let local_host = 'http://localhost:8000'
 
 //获取商品类别信息
 export const queryCategorygoods = params => { return axios.get(`${host}/indexgoods/`) }
@@ -60,7 +60,7 @@ export const login = params => {
 
 //注册
 
-export const register = parmas => { return axios.post(`${host}/users/`, parmas) }
+export const register = parmas => { return axios.post(`${local_host}/users/`, parmas) }
 
 //短信
 export const getMessage = parmas => { return axios.post(`${host}/code/`, parmas) }
