@@ -24,6 +24,7 @@ import xadmin
 from settings import MEDIA_ROOT
 from goods.views import GoodsListViewSet, CategoryViewset
 # from snippets.urls import urlpatterns as snippetsUrl
+from user_operation.views import UserFavViewset
 from users.views import SmsCodeViewset, UserRegViewset
 
 router = DefaultRouter()
@@ -37,6 +38,8 @@ router.register(r'categorys', CategoryViewset, base_name='categorys')
 router.register(r'code', SmsCodeViewset, base_name='categorys')
 
 router.register(r'users', UserRegViewset, base_name='users')
+
+router.register(r'userfavs', UserFavViewset, base_name='userfavs')
 
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from rest_framework import serializers
 
-from .models import Goods
+from .models import Goods, GoodsImage
 from .models import GoodsCategory
 
 # method 1 自己一个个写字段
@@ -42,8 +42,14 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class GoodsImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GoodsImage
+        fields = ("image", )
+
 class GoodsSerializer(serializers.ModelSerializer):
     category = CategorySerializer()
+    images = GoodsImageSerializer(many=True)
 
     class Meta:
         model = Goods
