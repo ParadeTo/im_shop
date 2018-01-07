@@ -46,6 +46,7 @@ class UserRegSerializer(serializers.ModelSerializer):
                                      validators=[UniqueValidator(queryset=User.objects.all(), message="用户已存在")])
     password = serializers.CharField(style={'input': 'password'}, write_only=True)
 
+    # 保存密码的一种方式
     # def create(self, validated_data):
     #     user = super(UserRegSerializer, self).create(validated_data=validated_data)
     #     user.set_password(validated_data["password"])

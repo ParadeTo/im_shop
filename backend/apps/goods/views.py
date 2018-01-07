@@ -77,7 +77,7 @@ class GoodsListViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewset
 
 class CategoryViewset(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.GenericViewSet):
     """
-    List:
+    list:
         商品分类列表数据
     """
     queryset = GoodsCategory.objects.all()

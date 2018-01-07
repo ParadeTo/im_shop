@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-
-let host = 'http://shop.projectsedu.com'
+// http://shop.projectsedu.com//
+let host = 'http://localhost:8000'
 let local_host = 'http://localhost:8000'
 
 //获取商品类别信息
@@ -51,7 +51,7 @@ export const delFav = goodsId => { return axios.delete(`${host}/userfavs/`+goods
 export const getAllFavs = () => { return axios.get(`${host}/userfavs/`) }
 
 //判断是否收藏
-export const getFav = goodsId => { return axios.get(`${host}/userfavs/`+goodsId+'/') }
+export const getFav = goodsId => { return axios.get(`${local_host}/userfavs/`+goodsId+'/') }
 
 //登录
 export const login = params => {

@@ -4,6 +4,11 @@ from django.dispatch import receiver
 
 User = get_user_model()
 
+# apps 中设置
+"""
+    def ready(self):
+        import users.signals
+"""
 @receiver(post_save, sender=User)
 def create_user_token(sender, instance=None, created=False, **kwargs):
     if created:

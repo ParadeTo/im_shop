@@ -191,3 +191,11 @@ settings.py
 * 博客地址
 
 `http://projectsedu.com`
+
+
+# 实现收藏
+## 通过 goods_id 获取收藏的记录
+设置 GenericAPIView -> get_object 的 lookup_field 为 goods_id
+
+
+
